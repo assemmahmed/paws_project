@@ -9,3 +9,11 @@ class Pet(models.Model):
 
     class Meta:
         db_table = "pets"
+
+class Blog(models.Model):
+
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+    class Meta:
+        db_table = "blog"
