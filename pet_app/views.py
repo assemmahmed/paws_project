@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Pet, Blog
 from .forms import AddPetForm, BlogForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -10,6 +11,7 @@ def pets(request):
     pets = Pet.objects.all()
     return render(request, "pet_app/pets.html", {"pets": pets})
 
+login_required
 def add_pet_form(request):
     if request.method == 'POST':
         form = AddPetForm(request.POST)
@@ -28,6 +30,7 @@ def add_pet_form(request):
         form = AddPetForm()
     return render(request, "pet_app/add_pet_form.html", {'form': form})
 
+login_required
 def create_blog(request):
     if request.method == 'POST':
         blog_form = BlogForm(request.POST)
